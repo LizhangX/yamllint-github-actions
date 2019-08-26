@@ -1,4 +1,4 @@
-name: CI
+name: yamllint
 
 on: [push]
 
@@ -9,9 +9,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: ls -a
+    - name: Install Yamllint
+      run: pip install --user yamllint
     - name: Run a multi-line script
       run: |
-        python -V
-        pip -V
+        yamllint -d relaxed *.y*ml
+        echo yamllint ends
