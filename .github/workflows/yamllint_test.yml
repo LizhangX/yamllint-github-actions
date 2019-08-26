@@ -22,5 +22,5 @@ jobs:
     - name: Install and run yamllint
       run: |
         pip install yamllint
-        yamllint -d relaxed *.y*ml
+        yamllint -h
         echo yamllint ends
