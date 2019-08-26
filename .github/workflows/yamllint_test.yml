@@ -22,5 +22,5 @@ jobs:
     - name: Install and run yamllint
       run: |
         pip install yamllint
-        yamllint -h
+        yamllint dummy_1.yaml
         echo yamllint ends
