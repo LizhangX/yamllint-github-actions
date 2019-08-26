@@ -18,9 +18,10 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
-      run: python -m pip install --upgrade pip
-    - name: Install and run yamllint
       run: |
+        python -m pip install --upgrade pip
         pip install yamllint
+    - name: Run yamllint
+      run: |
         yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" .
         echo yamllint ends
