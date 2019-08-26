@@ -9,9 +9,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Install Yamllint
-      run: pip install --user yamllint
-    - name: Run a multi-line script
+    - name: Install and run yamllint
       run: |
+        pip install --user yamllint
         yamllint -d relaxed *.y*ml
         echo yamllint ends
