@@ -32,7 +32,6 @@ jobs:
       run: |
         echo "$COMMITS_CONTEXT"
         echo "$FILES_MODIFIED"
-        echo "$FILES_RAW"
 
     - name: Run yamllint
       run: |
