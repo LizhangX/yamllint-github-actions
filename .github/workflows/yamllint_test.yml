@@ -30,5 +30,7 @@ jobs:
         COMMITS_CONTEXT: ${{ toJson(github.event.commits) }}
         FILES_MODIFIED: ${{ toJson(github.event.commits[0].modified) }}
       run: |
-        for i in $(echo "$FILES_MODIFIED" | jq -c '.[]'); do yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" $i; done
+        arr=($(jq -r '.[]' $FILES_MODIFIED) )
+        printf '%s\n' "${arr[@]}"
+        for i in ${arr[@]}; do yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" $i; done
         echo yamllint ends
