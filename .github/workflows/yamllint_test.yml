@@ -1,19 +1,19 @@
 name: yamllint
 
-on: [push]
-push:
-  branches:    # Array of patterns that match refs/heads
-    - master     # Push events on master branch
-    
+on:
+  push:
+    branches:    # Array of patterns that match refs/heads
+      - master     # Push events on master branch
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     strategy:
       max-parallel: 1
       matrix:
         python-version: [3.7]
-        
+
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python ${{ matrix.python-version }}
