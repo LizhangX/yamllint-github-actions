@@ -23,14 +23,14 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install yamllint
+        sudo apt-get install jq
 
     - name: Run yamllint
       env:
         COMMITS_CONTEXT: ${{ toJson(github.event.commits) }}
         FILES_MODIFIED: ${{ toJson(github.event.commits[0].modified) }}
       run: |
-        echo "$COMMITS_CONTEXT"
-        echo "${{ github.event.commits[0].modified[*] }}"
-        for i in ${{ github.event.commits[0].modified[*] }}; do echo "$i"; done
+        sample=${{ github.event.commits[0].modified }}"
+        echo "${sample}" | jq -c '.[]'
         yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" .
         echo yamllint ends
