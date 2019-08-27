@@ -28,7 +28,7 @@ jobs:
     - name: Print Github Event
       env:
         COMMITS_CONTEXT: ${{ toJson(github.event.commits) }}
-        FILES_MODIFIED: ${{ toJson(github.event.commits[0][modified]) }}
+        FILES_MODIFIED: ${{ toJson(github.event.commits[0].modified) }}
       run: |
         echo "$COMMITS_CONTEXT"
         echo "$FILES_MODIFIED"
