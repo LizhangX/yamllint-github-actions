@@ -13,22 +13,30 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install yamllint
-    - name: Run yamllint
-      run: |
-        yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" .
-        echo yamllint ends
+
     - name: Print Github Event
       env:
         COMMITS_CONTEXT: ${{ toJson(github.event.commits) }}
         FILES_MODIFIED: ${{ toJson(github.event.commits[0].modified) }}
+        FILES_RAW: ${{ github.event.commits[0].modified }}
       run: |
         echo "$COMMITS_CONTEXT"
         echo "$FILES_MODIFIED"
+        echo "$FILES_RAW"
+
+    - name: Run yamllint
+      run: |
+        for i in $FILES_RAW; do echo "$i"; done
+        for i in $FILES_MODIFIED; do echo "$i"; done
+        yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" .
+        echo yamllint ends
