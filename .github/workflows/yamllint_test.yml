@@ -1,9 +1,6 @@
 name: yamllint
 
-on:
-  push:
-    branches:    # Array of patterns that match refs/heads
-      - master     # Push events on master branch
+on: [push]
 
 jobs:
   build:
