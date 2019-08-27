@@ -24,16 +24,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install yamllint
 
-    - name: Print Github Event
+    - name: Run yamllint
       env:
         COMMITS_CONTEXT: ${{ toJson(github.event.commits) }}
         FILES_MODIFIED: ${{ toJson(github.event.commits[0].modified) }}
       run: |
         echo "$COMMITS_CONTEXT"
-        echo "$FILES_MODIFIED"
-
-    - name: Run yamllint
-      run: |
-        echo "$FILES_MODIFIED"
+        for i in $FILES_MODIFIED; do echo "$i"; done
         yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" .
         echo yamllint ends
