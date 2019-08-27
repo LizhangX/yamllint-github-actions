@@ -30,6 +30,7 @@ jobs:
         FILES_MODIFIED: ${{ toJson(github.event.commits[0].modified) }}
       run: |
         echo "$COMMITS_CONTEXT"
-        for i in ${{ github.event.commits[0].modified }}; do echo "$i"; done
+        echo ${ ${{ github.event.commits[0].modified }}[*] }
+        for i in ${{ github.event.commits[0].modified }}[*]; do echo "$i"; done
         yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" .
         echo yamllint ends
