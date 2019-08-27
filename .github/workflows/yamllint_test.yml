@@ -27,5 +27,5 @@ jobs:
         echo yamllint ends
     - name: Print Github Event
       env:
-        EVENT_CONTEXT: ${{ toJson(github.event) }}
-      run: echo "$EVENT_CONTEXT"
+        COMMITS_CONTEXT: ${{ toJson(github.event.commits) }}
+      run: echo "$COMMITS_CONTEXT"
