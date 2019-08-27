@@ -34,6 +34,6 @@ jobs:
 
     - name: Run yamllint
       run: |
-        echo "$FILES_MODIFIED" #for i in $FILES_MODIFIED; do echo "$i"; done
+        echo "$FILES_MODIFIED"
         yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" .
         echo yamllint ends
