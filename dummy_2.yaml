@@ -1,5 +1,4 @@
 serve: rocket
-serve: rocket
 pair: true
 successful: false
 colony:
