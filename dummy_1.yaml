@@ -8,7 +8,7 @@ trouble:
     class: vast
   believed: false
 trouble:
-  new: old
+  new: new
   within:
     because: false
     four: false
