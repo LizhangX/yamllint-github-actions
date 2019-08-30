@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   build:
+    name: Lint only commited files for push
     runs-on: ubuntu-latest
 
     steps:
