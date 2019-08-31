@@ -25,5 +25,8 @@ jobs:
         FILES_MODIFIED: ${{ toJson(github.event.commits[0].modified) }}
         FILES_STRING: ${{ join(github.event.commits[0].modified) }}
       run: |
-        yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" $FILES_STRING
+        if [ -z "$FILES_STRING" ]; \
+        then echo "FILES_STRING is empty" ; \
+        else yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" $FILES_STRING; \
+        fi
         echo yamllint ends
