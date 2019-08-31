@@ -6,6 +6,7 @@ trouble:
     thou: true
     soil: -621614275.8480897
     class: vast
+    class: something
   believed: false
 trouble:
   new: old
