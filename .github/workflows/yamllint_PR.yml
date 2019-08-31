@@ -26,4 +26,4 @@ jobs:
         FILES_STRING: ${{ join(github.event.commits[0].modified) }}
       run: |
         yamllint -d "{extends: relaxed, rules:{trailing-spaces: disable, line-length: disable, indentation: disable, empty-lines: disable, commas: disable, colons: disable, hyphens: disable}}" .
-        echo yamllint ends
+        echo yamllint passed
